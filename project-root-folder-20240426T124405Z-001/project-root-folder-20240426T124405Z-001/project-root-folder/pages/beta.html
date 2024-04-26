@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bop</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    header {
+      background-color:#030612;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #1D2233;
+      padding: 10px;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+    nav a:hover {
+      background-color: #000;
+    }
+    .slideshow {
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    .slides-container {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .slide {
+      flex: 0 0 100%;
+      position: relative;
+    }
+    .slide img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    .slide-text {
+      background-color: rgba(255, 255, 255, 0.8);
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    .slide-text h2 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+    .slide-text p {
+      margin: 0;
+      font-size: 14px;
+    }
+    .radio-buttons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+    }
+    .radio-button {
+      appearance: none;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 2px solid #000;
+      background-color: #fff;
+      margin: 0 5px;
+      cursor: pointer;
+    }
+    .radio-button:checked {
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Climate change</h1>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Issues</a>
+    <a href="#">Solution</a>
+    <a href="#">Get Involved</a>
+    <a href="#">Blog</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="container">
+  <div class="slideshow">
+    <div class="slides-container">
+      <div class="slide">
+        <img src="https://via.placeholder.com/1200x600" alt="Slide 1">
+        <div class="slide-text">
+          
+        </div>
+      </div>
+      <div class="slide">
+        <img src="https://via.placeholder.com/1200x600" alt="Slide 2">
+        <div class="slide-text">
+          
+        </div>
+      </div>
+      <div class="slide">
+        <img src="https://via.placeholder.com/1200x600" alt="Slide 3">
+        <div class="slide-text">
+      
+        </div>
+      </div>
+      <!-- Add more slides as needed -->
+    </div>
+  </div>
+  <div class="radio-buttons">
+    <input type="radio" name="slide" id="slide1" class="radio-button" checked>
+    <input type="radio" name="slide" id="slide2" class="radio-button">
+    <input type="radio" name="slide" id="slide3" class="radio-button">
+    <!-- Add more radio buttons as needed -->
+  </div>
+  <h2>Lorrem ipsum</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut quam sodales, laoreet massa eu, finibus eros.</p>
+          
+</div>
+
+
+<script>
+    var slidesContainer = document.querySelector('.slides-container');
+    var radioButtons = document.querySelectorAll('.radio-button');
+  
+    function moveSlide() {
+      var index = Array.from(radioButtons).findIndex(radio => radio.checked);
+      slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+    }
+  
+    function autoScroll() {
+      var currentIndex = Array.from(radioButtons).findIndex(radio => radio.checked);
+      var nextIndex = (currentIndex + 1) % radioButtons.length;
+      radioButtons[nextIndex].checked = true;
+      moveSlide();
+    }
+  
+    var intervalId = setInterval(autoScroll, 2000); // Change slide every 5 seconds (5000 milliseconds)
+  
+    radioButtons.forEach(function(radioButton) {
+      radioButton.addEventListener('click', function() {
+        clearInterval(intervalId); // Stop auto-scrolling when user clicks on a radio button
+        intervalId = setInterval(autoScroll, 5000); // Restart auto-scrolling
+        moveSlide();
+      });
+    });
+  </script>
+  
+
+</body>
+</html>
